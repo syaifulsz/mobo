@@ -1,4 +1,4 @@
-<?php foreach( app\components\Session::getMessages() as $message ) : ?>
+<?php foreach( ssz\mobo\components\Session::getMessages() as $message ) : ?>
     <?php if ( $message[ 'tag' ] === 'alert' ) : ?>
         <div class="text-left alert alert-<?= $message[ 'type' ] ?> alert-dismissible fade show" role="alert">
             <?= $message[ 'message' ] ?>

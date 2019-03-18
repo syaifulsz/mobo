@@ -1,8 +1,8 @@
 <?php
 
-use app\components\View;
+use ssz\mobo\components\View;
 
-$control = $control ?? new app\models\Column;
+$control = $control ?? new ssz\mobo\models\Column;
 
 ?>
 

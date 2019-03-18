@@ -1,4 +1,4 @@
 <?php
 
-$route->add( '/', [ '\\app\\controllers\\SiteController', 'index' ] );
-$route->add( '/example', [ '\\app\\controllers\\SiteController', 'example' ] );
+$route->add( '/', [ '\\ssz\mobo\\controllers\\SiteController', 'index' ] );
+$route->add( '/example', [ '\\ssz\mobo\\controllers\\SiteController', 'example' ] );

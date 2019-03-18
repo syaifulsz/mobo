@@ -13,6 +13,6 @@ class BaseEloquentModel extends Model
     // public $timestamps = false;
     // public function sample_relationship()
     // {
-    //     return $this->hasOne('\app\models\Eloquents\City', 'id', 'city_id');
+    //     return $this->hasOne('\ssz\mobo\models\Eloquents\City', 'id', 'city_id');
     // }
 }

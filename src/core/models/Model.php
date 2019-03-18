@@ -2,7 +2,7 @@
 
 namespace ssz\mobo\core\models;
 
-use app\components\Cache;
+use ssz\mobo\components\Cache;
 use SleekDB\SleekDB;
 
 class Model

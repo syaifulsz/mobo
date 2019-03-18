@@ -2,13 +2,13 @@
 
 namespace ssz\mobo\core\controllers;
 
-use app\components\{
+use ssz\mobo\components\{
     View,
     Url,
     Request,
     Cache
 };
-use app\models\layouts\Layout;
+use ssz\mobo\models\layouts\Layout;
 
 class Controller
 {

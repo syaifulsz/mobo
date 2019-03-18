@@ -2,7 +2,7 @@
 
 namespace ssz\mobo;
 
-use app\components\{
+use ssz\mobo\components\{
     Route,
     Config,
     Session,

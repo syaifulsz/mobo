@@ -2,7 +2,7 @@
 
 namespace ssz\mobo\components;
 
-use app\components\Url;
+use ssz\mobo\components\Url;
 
 class Asset
 {

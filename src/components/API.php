@@ -8,7 +8,7 @@ use GuzzleHttp\Exception\{
     ServerException,
     RequestException
 };
-use app\components\Config;
+use ssz\mobo\components\Config;
 
 class API
 {

@@ -3,7 +3,7 @@
 namespace ssz\mobo\components;
 
 // components
-use app\components\Config;
+use ssz\mobo\components\Config;
 
 // vendors
 use Illuminate\{

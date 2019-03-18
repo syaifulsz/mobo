@@ -2,7 +2,7 @@
 
 namespace ssz\mobo\components;
 
-use app\components\Config;
+use ssz\mobo\components\Config;
 
 class View
 {

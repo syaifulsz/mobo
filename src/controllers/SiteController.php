@@ -2,8 +2,8 @@
 
 namespace ssz\mobo\controllers;
 
-use app\core\controllers\Controller;
-use app\components\View;
+use ssz\mobo\core\controllers\Controller;
+use ssz\mobo\components\View;
 
 class SiteController extends Controller
 {

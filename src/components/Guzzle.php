@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Exception\RequestException;
-use app\components\Config;
+use ssz\mobo\components\Config;
 
 class Guzzle
 {

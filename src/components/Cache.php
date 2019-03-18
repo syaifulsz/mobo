@@ -2,7 +2,7 @@
 
 namespace ssz\mobo\components;
 
-use app\components\{
+use ssz\mobo\components\{
     Str
 };
 

@@ -1,6 +1,6 @@
 <?php
 
-use app\components\{
+use ssz\mobo\components\{
     Url,
     Auth
 };

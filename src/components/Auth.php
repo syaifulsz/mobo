@@ -2,11 +2,11 @@
 
 namespace ssz\mobo\components;
 
-use app\components\{
+use ssz\mobo\components\{
     Session,
     Config
 };
-use app\models\User;
+use ssz\mobo\models\User;
 
 class Auth
 {

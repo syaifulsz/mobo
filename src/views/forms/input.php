@@ -1,6 +1,6 @@
 <?php
 
-$control = $control ?? new app\models\Column;
+$control = $control ?? new ssz\mobo\models\Column;
 
 ?>
 
