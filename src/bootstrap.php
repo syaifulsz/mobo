@@ -28,7 +28,7 @@ class Bootstrap
         $this->setupRoute( $config );
     }
 
-    private function setupToken( array $config = [] )
+    protected function setupToken( array $config = [] )
     {
         session_start();
 
@@ -67,19 +67,19 @@ class Bootstrap
         }
     }
 
-    private function resetToken()
+    protected function resetToken()
     {
         Session::resetToken();
     }
 
-    private function setupDatabase( array $config = [] )
+    protected function setupDatabase( array $config = [] )
     {
         if ( Config::get( 'database.useMysql' ) ) {
             new Database;
         }
     }
 
-    private function setupRoute( array $config = [] )
+    protected function setupRoute( array $config = [] )
     {
         $route = new Route;
 
