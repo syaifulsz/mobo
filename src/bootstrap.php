@@ -21,14 +21,14 @@ define( 'YEAR_IN_SECONDS',  365 * DAY_IN_SECONDS    );
 
 class Bootstrap
 {
-    public function __construct()
+    public function __construct( array $config = [] )
     {
-        $this->setupDatabase();
-        $this->setupToken();
-        $this->setupRoute();
+        $this->setupDatabase( $config );
+        $this->setupToken( $config );
+        $this->setupRoute( $config );
     }
 
-    private function setupToken()
+    private function setupToken( array $config = [] )
     {
         session_start();
 
@@ -72,14 +72,14 @@ class Bootstrap
         Session::resetToken();
     }
 
-    private function setupDatabase()
+    private function setupDatabase( array $config = [] )
     {
         if ( Config::get( 'database.useMysql' ) ) {
             new Database;
         }
     }
 
-    private function setupRoute()
+    private function setupRoute( array $config = [] )
     {
         $route = new Route;
 
@@ -90,6 +90,13 @@ class Bootstrap
 
         if ( $projectId = getenv( 'PROJECT_ID' ) ) {
             $routeDir = __DIR__ . '/../sites/' . $projectId . '/routes/*.php';
+            foreach ( glob( $routeDir ) as $file ) {
+                require( $file );
+            }
+        }
+
+        if ( !empty( $config[ 'setupRouteDir' ] ) ) {
+            $routeDir = $config[ 'setupRouteDir' ] . '/*.php';
             foreach ( glob( $routeDir ) as $file ) {
                 require( $file );
             }
