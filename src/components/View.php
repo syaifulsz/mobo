@@ -10,6 +10,8 @@ class View
     const BLOCK_BODY_START = 'blockBodyStart';
     const BLOCK_BODY_END = 'blockBodyEnd';
 
+    public $projectDirPath;
+    public $dirPath;
     public $layout = 'main';
     public $params = [];
     public $template;
@@ -22,20 +24,64 @@ class View
     public $blockHead = [];
     public $blockBodyStart = [];
     public $blockBodyEnd = [];
-    protected $__raw;
+    public $projectId;
+    protected $__config;
 
-    public function __construct( array $raw = [] )
+    public function __construct( array $config = [] )
     {
-        if ( $this->__raw = $raw ) {
-            foreach ( $raw as $property => $value ) {
+        if ( $this->__config = $config ) {
+            foreach ( $config as $property => $value ) {
                 if ( property_exists( $this, $property ) ) {
                     $this->$property = $value;
                 }
             }
         }
-        if ( empty( $this->pageTitleArray ) ) {
+
+        $this->setProjectId( $config );
+        $this->setPageTitleArray( $config );
+        $this->setDirPath( $config );
+    }
+
+    protected function setPageTitleArray( array $config = [] ) : array
+    {
+        if ( !empty( $config[ 'pageTitleArray' ] ) ) {
+            $this->pageTitleArray[] = $config[ 'pageTitleArray' ];
+        } else if ( Config::get( 'app.name' ) ) {
             $this->pageTitleArray[] = Config::get( 'app.name' );
         }
+
+        return $this->pageTitleArray;
+    }
+
+    protected function setProjectId( array $config = [] ) : string
+    {
+        $projectId = getenv( 'PROJECT_ID' );
+        if ( !empty( $config[ 'projectId' ] ) ) {
+            $projectId = $config[ 'projectId' ];
+        }
+        return $this->projectId;
+    }
+
+    protected function setDirPath( array $config = [] ) : array
+    {
+        $projectDirPath = $this->projectId ? __DIR__ . '/../../sites/' . $this->projectId . '/views/' : '';
+        $dirPath = __DIR__ . '/../views/';
+
+        if ( !empty( $config[ 'dirPath' ] ) ) {
+            $dirPath = $config[ 'dirPath' ];
+        }
+
+        if ( !empty( $config[ 'projectDirPath' ] ) ) {
+            $projectDirPath = $config[ 'projectDirPath' ];
+        }
+
+        $this->dirPath = $dirPath;
+        $this->projectDirPath = $projectDirPath;
+
+        return [
+            'dirPath' => $this->dirPath,
+            'projectDirPath' => $this->projectDirPath
+        ];
     }
 
     public function addBodyClass( string $class )
@@ -43,11 +89,11 @@ class View
         $this->bodyClass[$class] = $class;
     }
 
-    public function getRaw()
+    public function getConfig()
     {
         $array = [];
         foreach ( get_object_vars( $this ) as $key => $value ) {
-            if ( $key !== '__raw' ) {
+            if ( $key !== '__config' ) {
                 $array[ $key ] = $value;
             }
         }
@@ -104,12 +150,12 @@ class View
         $template = '';
         $template_name = $template_name ?: $this->template;
 
-        if ( $projectId = getenv( 'PROJECT_ID' ) ) {
-            $template = __DIR__ . '/../../sites/' . $projectId . '/views/' . $template_name . '.php';
+        if ( $this->projectId ) {
+            $template = $this->projectDirPath . $template_name . '.php';
         }
 
         if ( !file_exists( $template ) ) {
-            $template = __DIR__ . '/../views/' . $template_name . '.php';
+            $template = $this->dirPath . $template_name . '.php';
             if ( !file_exists( $template ) ) {
                 throw new \Error( __METHOD__ . ' :: template not found :: ' . $template );
             }
